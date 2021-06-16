@@ -1,84 +1,38 @@
-# Example app with styled-components
+# *___ SEARCH DEV ___ *
 
-This example features how you use a different styling solution than [styled-jsx](https://github.com/vercel/styled-jsx) that also supports universal styles. That means we can serve the required styles for the first render within the HTML and then load the rest in the client. In this case we are using [styled-components](https://github.com/styled-components/styled-components).
+# Consulte o repositório de seus Dev's favoritos
 
-For this purpose we are extending the `<Document />` and injecting the server side rendered styles into the `<head>`, and also adding the `babel-plugin-styled-components` (which is required for server side rendering). Additionally we set up a global [theme](https://www.styled-components.com/docs/advanced#theming) for styled-components using NextJS custom [`<App>`](https://nextjs.org/docs/advanced-features/custom-app) component.
+Projeto desenvolvido à partir do [desafio-reactjs](https://github.com/devMozao/desafio-reactjs), oferecido gentilmente por [devMozao](https://github.com/devMozao) (Diogo Fonseca), com o objetivo de permitir que desenvolvedores iniciantes da comunidade FrontEnd possam testar seus conhecimentos e avaliar o seu nível na área.
 
-## Preview
+Trata-se de uma aplicação que permite entrar com o nome de um usuário do GitHub na página inicial e listar seus dados e repositórios que são públicos, requisitados à partir da Api disponibilizada pelo próprio GitHub (veja a documentação [aqui](https://docs.github.com/en/rest
+))
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+Este projeto foi criado usando o Boilerplate [Create Next App](#).
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-styled-components)
+## `Instalação do projeto`
 
-## Deploy your own
+### PRÉ REQUISITOS:
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+* **`NodeJS`** - versão *14.2.0* ou superior;
+* **`npm`** - versão *7.15.0* ou superior;
+* **`yarn`** - (opção ao `npm`) - versão *1.22.4* ou superior;
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-styled-components&project-name=with-styled-components&repository-name=with-styled-components)
+Para a instalação do projeto, uma vez que se fez o fork ou o download do projeto em sua máquina, acessar a pasta *`'serach-dev'`* e rodar o comando **`npm install`** através do terminal e serão baixadas e instaladas todas as dependências necessárias para o uso da aplicação.
 
-## How to use
+Uma vez que a instalação tenha sido concluída, basta rodar o comando **`npm start`** no terminal e o servidor de desenvolvimento será iniciado abrindo em seguida uma janela do navegador com a página inicial da aplicação. Este servidor tem "auto-reload", ou seja, toda a alteração que for feita no projeto, será carragada automaticamente.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+## `Build para deploy`
 
-```bash
-npx create-next-app --example with-styled-components with-styled-components-app
-# or
-yarn create next-app --example with-styled-components with-styled-components-app
-```
+Para rodar o build para fazer o deploy da aplicação, basta rodar na pasta do projeto o comando **`npm build`**, e será criada uma pasta build com o projeto otimizado, pronto para o deploy.
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## `NPM ou YARN`
 
-### Try it on CodeSandbox
+Pode-se usar o gerenciador de sua preferência, pois tanto o `NPM` quanto o `YARN` são aceitos pelas dependências utilizadas, sem problemas, mas é recomendável que, uma vez escolhido um deles, use apenas o escolhido, pois pode dar problemas de scripts no desenvolvimento e no build.
 
-[Open this example on CodeSandbox](https://codesandbox.io/s/github/vercel/next.js/tree/canary/examples/with-styled-components)
+## CONSIDERAÇÕES FINAIS
 
-### Notes
+A stack que escolhi para realizar esse projeto foi o uso de NextJS, através do boilerplate `Create-Next-APP`, estilizado por `Styled-Components` e com requisição para a API via `Fetch API`.
 
-When wrapping a [Link](https://nextjs.org/docs/api-reference/next/link) from `next/link` within a styled-component, the [as](https://styled-components.com/docs/api#as-polymorphic-prop) prop provided by `styled` will collide with the Link's `as` prop and cause styled-components to throw an `Invalid tag` error. To avoid this, you can either use the recommended [forwardedAs](https://styled-components.com/docs/api#forwardedas-prop) prop from styled-components or use a different named prop to pass to a `styled` Link.
+Escolhi essa stack, pela simplicidade do projeto, em termos de estilos, tendo sido resolvido basicamente com Flexbox, sem a necessidade de uso algum pré-processador de CSS. 
 
-<details>
-<summary>Click to expand workaround example</summary>
-<br />
-
-**components/StyledLink.js**
-
-```javascript
-import Link from 'next/link'
-import styled from 'styled-components'
-
-const StyledLink = ({ as, children, className, href }) => (
-  <Link href={href} as={as} passHref>
-    <a className={className}>{children}</a>
-  </Link>
-)
-
-export default styled(StyledLink)`
-  color: #0075e0;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    color: #40a9ff;
-  }
-
-  &:focus {
-    color: #40a9ff;
-    outline: none;
-    border: 0;
-  }
-`
-```
-
-**pages/index.js**
-
-```javascript
-import StyledLink from '../components/StyledLink'
-
-export default () => (
-  <StyledLink href="/post/[pid]" forwardedAs="/post/abc">
-    First post
-  </StyledLink>
-)
-```
-
-</details>
+Em relação à requisição, usei Fetch API, pois atende bem sem a necessidade de usar alguma biblioteca adicional, reduzindo o número de dependências.
